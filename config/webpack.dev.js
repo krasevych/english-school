@@ -3,15 +3,19 @@ const path = require('path');
 const webpack = require('webpack');
 const common = require('./webpack.common');
 const merge = require('webpack-merge');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const dev = {
   output: {
-    path: './dist',
+    path: path.resolve(__dirname, "../dist"),
     filename: '[name].js'
   },
-  plugins: [
-    new ExtractTextPlugin('b.css')
-  ]
+  module: {
+    rules: [
+      {
+        test: /\.scss$/,
+        loader: ['style-loader', 'css-loader', 'sass-loader']
+      }
+    ]
+  }
 };
 module.exports = merge(common, dev);
