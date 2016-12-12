@@ -5,6 +5,7 @@ const common = require('./webpack.common');
 const merge = require('webpack-merge');
 
 const dev = {
+  devtool: "source-map",
   output: {
     path: path.join(__dirname, '..', 'dist'),
     filename: '[name].js'

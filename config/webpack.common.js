@@ -2,14 +2,10 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const rules = [
   {
-    test: /\.tsx$/,
-    use: ['react-hot-loader','ts-loader?jsx=true'],
+    test: /\.tsx?$/,
+    use: ['awesome-typescript-loader'],
+    // use: ['react-hot-loader','ts-loader?jsx=true'],
     exclude: /(\.test.ts$|node_modules)/
-  },
-  {
-    test: /\.ts$/,
-    exclude: /(\.test.ts$|node_modules)/,
-    use: ['awesome-typescript-loader']
   },
   {
     test: /\.html$/,
@@ -29,18 +25,22 @@ const plugins = [
 
 const common = {
   entry: {
-    app: './src/main.ts'
+    app: './src/main.tsx'
   },
 
   resolve: {
-    extensions: ['*', '.ts', '.js', '.css', '.html', '.scss']
+    extensions: ['*', '.ts', '.tsx', '.js', '.css', '.html', '.scss']
   },
 
   module: {
     rules
   },
 
-  plugins
+  plugins,
+  externals: {
+    "react": "React",
+    "react-dom": "ReactDOM"
+  }
 };
 
 module.exports = common;
