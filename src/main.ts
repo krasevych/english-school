@@ -1,7 +1,7 @@
 require('./test');
 
 class Test {
-    constructor(a: any, b: any){
+    constructor(a: number, b: number){
         console.log(333)
     }
 }

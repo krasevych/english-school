@@ -2,7 +2,13 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const rules = [
   {
+    test: /\.tsx$/,
+    use: ['react-hot-loader','ts-loader?jsx=true'],
+    exclude: /(\.test.ts$|node_modules)/
+  },
+  {
     test: /\.ts$/,
+    exclude: /(\.test.ts$|node_modules)/,
     use: ['awesome-typescript-loader']
   },
   {

@@ -1,10 +1,9 @@
 {
   "compilerOptions": {
-    "target": "es2015",
-    "module": "es2015",
+    "baseUrl": "src",
+    "target": "ES5",
     "jsx": "react",
-    "outDir": "build",
-    "rootDir": "src",
+    "outDir": "dist",
     "allowSyntheticDefaultImports": true,
     "noImplicitAny": true,
     "experimentalDecorators": true,
@@ -13,12 +12,11 @@
     "sourceMap": true
   },
   "filesGlob": [
-    "config/**/*.ts",
     "src/**/*.ts",
     "src/**/*.tsx"
   ],
   "exclude": [
-    "build",
+    "dist",
     "node_modules"
   ],
   "compileOnSave": false

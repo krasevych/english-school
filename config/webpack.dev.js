@@ -6,7 +6,7 @@ const merge = require('webpack-merge');
 
 const dev = {
   output: {
-    path: path.resolve(__dirname, "../dist"),
+    path: path.join(__dirname, '..', 'dist'),
     filename: '[name].js'
   },
   module: {

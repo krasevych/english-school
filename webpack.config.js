@@ -1,2 +1,2 @@
 "use strict";
-module.exports = require('./config/webpack.prod.js');
+module.exports = env => env.dev ? require('./config/webpack.dev.js') : require('./config/webpack.prod.js');
