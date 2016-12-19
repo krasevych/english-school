@@ -29,6 +29,5 @@ const dev = {
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
   ]
-
 };
 module.exports = merge(common, dev);

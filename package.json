@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "English School",
   "scripts": {
-    "start": "webpack-dev-server --env.dev --hot --progress --color --port 3005",
+    "start": "node server.js",
     "test": "karma start",
     "build": "rimraf dist && webpack -p --env.prod --progress --profile --bail --color"
   },
