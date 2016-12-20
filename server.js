@@ -16,7 +16,6 @@ app.use(devMiddleware(compiler, {
     colors: true,
   },
   noInfo: true
-
 }));
 
 app.use(hotMiddleware(compiler));

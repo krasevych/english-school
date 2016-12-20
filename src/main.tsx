@@ -1,11 +1,12 @@
-import {AppContainer} from 'react-hot-loader';
 import * as React from "react";
 import * as ReactDOM from "react-dom";
+import {AppContainer} from 'react-hot-loader';
+
+import Root from './app/root';
 import './test';
-import App from './app/app'
 
 interface IHotModule {
-    hot?: { accept: (path: string, callback: () => void) => void };
+    hot?: {accept: (path: string, callback: () => void) => void};
 }
 
 declare const module: IHotModule;
@@ -13,16 +14,16 @@ declare const module: IHotModule;
 const rootEl = document.getElementById('root');
 ReactDOM.render(
     <AppContainer>
-        <App />
+        <Root />
     </AppContainer>,
     rootEl
 );
 
 if (module.hot) {
-    module.hot.accept('./app/app', () => {
-        // If you use Webpack 2 in ES modules mode, you can
-        // use <App /> here rather than require() a <NextApp />.
-        const NextApp = require('./app/app').default;
+    const url = './app/root';
+    module.hot.accept(url, () => {
+        const NextApp = require(url).default;
+
         ReactDOM.render(
             <AppContainer>
                 <NextApp />
