@@ -1,9 +1,10 @@
 {
   "compilerOptions": {
-    "baseUrl": "src",
     "target": "ES5",
     "jsx": "react",
+    "baseUrl": "src",
     "outDir": "dist",
+    "module": "commonjs",
     "allowSyntheticDefaultImports": true,
     "noImplicitAny": true,
     "experimentalDecorators": true,

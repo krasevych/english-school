@@ -1,15 +1,15 @@
-import * as React from "react";
-import * as ReactDOM from "react-dom";
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
 import {AppContainer} from 'react-hot-loader';
 
 import Root from './app/root';
 import './test';
 
-interface IHotModule {
+interface HotModule {
     hot?: {accept: (path: string, callback: () => void) => void};
 }
 
-declare const module: IHotModule;
+declare const module: HotModule;
 
 const rootEl = document.getElementById('root');
 ReactDOM.render(
@@ -20,9 +20,8 @@ ReactDOM.render(
 );
 
 if (module.hot) {
-    const url = './app/root';
-    module.hot.accept(url, () => {
-        const NextApp = require(url).default;
+    module.hot.accept('./app/root', () => {
+        const NextApp = require('./app/root').default;
 
         ReactDOM.render(
             <AppContainer>
