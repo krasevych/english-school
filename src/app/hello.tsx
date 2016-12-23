@@ -1,4 +1,4 @@
-import * as React from "react";
+import * as React from 'react';
 
 export interface HelloProps {
     compiler: string;
@@ -6,7 +6,7 @@ export interface HelloProps {
 }
 
 export interface HelloState {
-    name: string
+    name: string;
 }
 
 // 'HelloProps' describes the shape of props.
@@ -20,23 +20,30 @@ export class Hello extends React.Component<HelloProps, HelloState> {
         super(props);
     }
 
+    shouldComponentUpdate() {
+        return false;
+    }
+
+    componentWillReceiveProps() {
+        console.log(1111);
+    }
     handleSetName = () => {
         this.setState({
             name: 'wow2'
         });
-    };
+    }
 
     handleInputChange = (e: any) => {
         console.log(e.target.value);
         this.setState({
             name: e.target.value
         });
-    };
+    }
 
     render() {
         return <div>
             <h1>Hello from {this.props.compiler} and {this.props.framework}! {this.state.name}</h1>
-            <input type="text" onChange={this.handleInputChange}/>
+            <input type='text' onChange={this.handleInputChange}/>
             <button onClick={this.handleSetName}>new name</button>
         </div>;
     }

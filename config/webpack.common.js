@@ -31,13 +31,16 @@ const common = {
       {
         test: /\.html$/,
         exclude: /(\.test.ts$|node_modules)/,
-        use: ['html-loader']
+        use: 'html-loader'
       },
       {
-        test: /\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot|ico)$/,
-        exclude: /(\.test.ts$|node_modules)/,
-        use: ['file?name=assets/[name].[hash].[ext]']
-      }
+        test: /\.(png|jpg|jpeg|gif|svg|woff|woff2)$/,
+        use: 'url-loader?limit=10000'
+      },
+      {
+        test: /\.(eot|ttf|wav|mp3)$/,
+        use: 'file-loader'
+      },
     ]
   },
 
