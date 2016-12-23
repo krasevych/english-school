@@ -1,0 +1,12 @@
+
+b {
+    display: block;
+}
+h1 {
+    color: green;
+}
+
+.blue {
+    composes: c1 from './test2.css';
+    color: blue;
+}

@@ -1,6 +1,11 @@
 import * as React from 'react';
-import {Hello} from './hello';
+import * as CSSModules from 'react-css-modules';
 
+import {Hello} from './hello';
+const styles = require( './../test.css');
+// import * as styles from './../test.css';
+
+@CSSModules(styles)
 export default class Root extends React.Component<{}, {}> {
     state = {
         a: 1,
@@ -11,7 +16,7 @@ export default class Root extends React.Component<{}, {}> {
     constructor(props: any) {
         super(props);
         setTimeout(() => this.setState({
-            a: 2,
+            a: 3,
             f: 'ffff',
             z: 'zzzzz'
         }), 5000);
@@ -20,7 +25,7 @@ export default class Root extends React.Component<{}, {}> {
     render() {
         return (
             <div>
-                <div>hello, I am root{this.state.a}</div>
+                <div styleName='blue'>hello, I am root{this.state.a}</div>
                 <Hello compiler={this.state.f} framework={this.state.z}/>
             </div>
         );

@@ -4,6 +4,7 @@ const webpack = require('webpack');
 const common = require('./webpack.common');
 const merge = require('webpack-merge');
 
+
 const dev = {
   devtool: "source-map",
   entry: [
@@ -15,17 +16,7 @@ const dev = {
     path: path.join(__dirname, '..', 'dist'),
     filename: 'bundle.js',
   },
-  module: {
-    rules: [
-      {
-        test: /\.scss$/,
-        exclude: /node_modules/,
-        loader: ['style-loader', 'css-loader', 'sass-loader']
-      }
-    ]
-  },
   plugins: [
-    new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
   ]

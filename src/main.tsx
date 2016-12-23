@@ -3,7 +3,6 @@ import * as ReactDOM from 'react-dom';
 import {AppContainer} from 'react-hot-loader';
 
 import Root from './app/root';
-import './test';
 
 interface HotModule {
     hot?: {accept: (path: string, callback: () => void) => void};
