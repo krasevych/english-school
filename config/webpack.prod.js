@@ -1,5 +1,4 @@
 "use strict";
-const path = require('path');
 const webpack = require('webpack');
 const common = require('./webpack.common');
 const merge = require('webpack-merge');
@@ -10,20 +9,30 @@ const dev = {
     path: './dist',
     filename: '[name].js'
   },
+
   module: {
     rules: [
+
       {
-        test: /\.scss$/,
+        test: /\.css$/,
         exclude: /node_modules/,
         loader: ExtractTextPlugin.extract({
-          fallbackLoader: 'style-loader',
-          loader: ['css-loader', 'sass-loader']
+          notExtractLoader: 'style-loader',
+          loader: [
+            `css-loader?${JSON.stringify({
+              modules: true,
+              importLoaders: 1,
+              localIdentName: '[name]__[local]___[hash:base64:5]'
+            })}`,
+            'postcss-loader'
+          ]
         })
-      }
+      },
     ]
   },
+
   plugins: [
-    new ExtractTextPlugin('[name].css'),
+    new ExtractTextPlugin({filename: '[name].css', allChunks: true}),
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify('production')
@@ -31,4 +40,5 @@ const dev = {
     })
   ]
 };
+
 module.exports = merge(common, dev);

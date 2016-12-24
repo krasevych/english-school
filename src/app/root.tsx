@@ -3,7 +3,6 @@ import * as CSSModules from 'react-css-modules';
 
 import {Hello} from './hello';
 const styles = require( './../test.css');
-// import * as styles from './../test.css';
 
 @CSSModules(styles)
 export default class Root extends React.Component<{}, {}> {
@@ -25,7 +24,7 @@ export default class Root extends React.Component<{}, {}> {
     render() {
         return (
             <div>
-                <div styleName='blue'>hello, I am root{this.state.a}</div>
+                <div styleName='blue'>hello, I am rootB{this.state.a}</div>
                 <Hello compiler={this.state.f} framework={this.state.z}/>
             </div>
         );

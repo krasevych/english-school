@@ -1,7 +1,7 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const path = require('path');
 const webpack = require('webpack');
+const cssNext = require('postcss-cssnext');
 
 const common = {
   entry: {
@@ -31,18 +31,6 @@ const common = {
         exclude: /(node_modules)/
       },
       {
-        test: /\.css$/,
-        exclude: /node_modules/,
-        loader: ['style-loader', 'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]', 'postcss-loader']
-/*        loader: ExtractTextPlugin.extract({
-          notExtractLoader: 'style-loader',
-          loader: [
-            'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]',
-            'postcss-loader',
-          ]
-        })*/
-      },
-      {
         test: /\.html$/,
         exclude: /(\.test.ts$|node_modules)/,
         use: 'html-loader'
@@ -60,14 +48,13 @@ const common = {
 
   plugins: [
     new webpack.optimize.OccurrenceOrderPlugin(),
-    new ExtractTextPlugin({filename: '[name].css', allChunks: true}),
     new HtmlWebpackPlugin({
       template: 'src/index.html'
     }),
     new webpack.LoaderOptionsPlugin({
       options: {
         postcss: [
-          require('postcss-cssnext')
+          cssNext({browsers: ['last 1 version']})
         ]
       }
     })
