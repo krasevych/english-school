@@ -8,14 +8,13 @@ const common = {
     app: './src/main.tsx'
   },
 
+  output: {
+    path: path.join(__dirname, '..', 'dist'),
+    filename: '[name].js'
+  },
+
   module: {
     rules: [
-      {
-        enforce: 'pre',
-        test: /\.js$/,
-        exclude: /node_modules/,
-        use: 'source-map-loader'
-      },
       {
         enforce: 'pre',
         test: /\.tsx?$/,

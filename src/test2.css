@@ -2,7 +2,7 @@
     --danger-theme: {
         color: white;
         background-color: rebeccapurple;
-        filter: blur(1px);
+        filter: blur(5px);
     };
 }
 

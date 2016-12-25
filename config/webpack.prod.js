@@ -4,12 +4,7 @@ const common = require('./webpack.common');
 const merge = require('webpack-merge');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-const dev = {
-  output: {
-    path: './dist',
-    filename: '[name].js'
-  },
-
+const prod = {
   module: {
     rules: [
       {
@@ -34,8 +29,12 @@ const dev = {
   },
 
   plugins: [
-    new ExtractTextPlugin({filename: '[name].css', allChunks: true}),
     new webpack.optimize.DedupePlugin(),
+
+    new ExtractTextPlugin({
+      filename: '[name].css'
+    }),
+
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify('production')
@@ -44,4 +43,4 @@ const dev = {
   ]
 };
 
-module.exports = merge(common, dev);
+module.exports = merge(common, prod);
