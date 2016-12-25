@@ -13,27 +13,22 @@ const common = {
       {
         enforce: 'pre',
         test: /\.js$/,
-        use: 'source-map-loader',
-        exclude: /(node_modules)/
+        exclude: /node_modules/,
+        use: 'source-map-loader'
       },
       {
         enforce: 'pre',
         test: /\.tsx?$/,
-        use: 'tslint-loader',
-        exclude: /(node_modules)/
+        exclude: /node_modules/,
+        use: 'tslint-loader'
       },
       {
         test: /\.tsx?$/,
+        exclude: /node_modules/,
         use: [
           'react-hot-loader/webpack',
           'awesome-typescript-loader'
-        ],
-        exclude: /(node_modules)/
-      },
-      {
-        test: /\.html$/,
-        exclude: /(\.test.ts$|node_modules)/,
-        use: 'html-loader'
+        ]
       },
       {
         test: /\.(png|jpg|jpeg|gif|svg|woff|woff2)$/,
@@ -48,9 +43,12 @@ const common = {
 
   plugins: [
     new webpack.optimize.OccurrenceOrderPlugin(),
+    new webpack.NoErrorsPlugin(),
+
     new HtmlWebpackPlugin({
       template: 'src/index.html'
     }),
+
     new webpack.LoaderOptionsPlugin({
       options: {
         postcss: [

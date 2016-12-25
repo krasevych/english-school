@@ -4,13 +4,8 @@ import {AppContainer} from 'react-hot-loader';
 
 import Root from './app/root';
 
-interface HotModule {
-    hot?: {accept: (path: string, callback: () => void) => void};
-}
-
-declare const module: HotModule;
-
 const rootEl = document.getElementById('root');
+
 ReactDOM.render(
     <AppContainer>
         <Root />
@@ -18,8 +13,8 @@ ReactDOM.render(
     rootEl
 );
 
-if (module.hot) {
-    module.hot.accept('./app/root', () => {
+if ((module as HotModule).hot) {
+    (module as HotModule).hot.accept('./app/root', () => {
         const NextApp = require('./app/root').default;
 
         ReactDOM.render(

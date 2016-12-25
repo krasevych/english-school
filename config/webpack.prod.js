@@ -12,18 +12,20 @@ const dev = {
 
   module: {
     rules: [
-
       {
         test: /\.css$/,
         exclude: /node_modules/,
         loader: ExtractTextPlugin.extract({
-          notExtractLoader: 'style-loader',
+          fallbackLoader: 'style-loader',
           loader: [
-            `css-loader?${JSON.stringify({
-              modules: true,
-              importLoaders: 1,
-              localIdentName: '[name]__[local]___[hash:base64:5]'
-            })}`,
+            {
+              loader: 'css-loader',
+              query: {
+                modules: true,
+                importLoaders: 1,
+                localIdentName: '[name]__[local]___[hash:base64:5]'
+              }
+            },
             'postcss-loader'
           ]
         })
@@ -33,6 +35,7 @@ const dev = {
 
   plugins: [
     new ExtractTextPlugin({filename: '[name].css', allChunks: true}),
+    new webpack.optimize.DedupePlugin(),
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify('production')

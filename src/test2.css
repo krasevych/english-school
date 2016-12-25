@@ -1,0 +1,13 @@
+:root {
+    --danger-theme: {
+        color: white;
+        background-color: rebeccapurple;
+        filter: blur(1px);
+    };
+}
+
+.c1 {
+    color: red;
+    background: green;
+    @apply(--danger-theme);
+}
