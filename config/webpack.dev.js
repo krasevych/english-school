@@ -18,11 +18,12 @@ const dev = {
       {
         test: /\.css$/,
         exclude: /node_modules/,
-        loader: [
+        use: [
           'style-loader',
           {
             loader: 'css-loader',
-            query: {
+            options: {
+              sourceMap: true,
               modules: true,
               importLoaders: 1,
               localIdentName: '[name]__[local]___[hash:base64:5]'

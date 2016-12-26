@@ -2,6 +2,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 const webpack = require('webpack');
 const cssNext = require('postcss-cssnext');
+const reporter = require('postcss-reporter');
 
 const common = {
   entry: {
@@ -50,10 +51,12 @@ const common = {
 
     new webpack.LoaderOptionsPlugin({
       options: {
+        context: __dirname,
         postcss: [
           cssNext({
             browsers: ['last 1 version']
-          })
+          }),
+          reporter
         ]
       }
     })
