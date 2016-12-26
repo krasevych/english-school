@@ -51,7 +51,9 @@ const common = {
     new webpack.LoaderOptionsPlugin({
       options: {
         postcss: [
-          cssNext({browsers: ['last 1 version']})
+          cssNext({
+            browsers: ['last 1 version']
+          })
         ]
       }
     })
