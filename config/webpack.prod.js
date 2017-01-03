@@ -32,7 +32,7 @@ const prod = {
     new webpack.optimize.DedupePlugin(),
 
     new ExtractTextPlugin({
-      filename: '[name].css'
+      filename: '[name]_[hash].css'
     }),
 
     new webpack.DefinePlugin({

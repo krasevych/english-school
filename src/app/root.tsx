@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as CSSModules from 'react-css-modules';
 
 import {Hello} from './hello';
-const styles = require( './../test.css');
+import * as styles from './../test.css';
 
 @CSSModules(styles)
 export default class Root extends React.Component<{}, {}> {
