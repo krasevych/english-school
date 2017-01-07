@@ -23,14 +23,6 @@ const common = {
         use: 'tslint-loader'
       },
       {
-        test: /\.tsx?$/,
-        exclude: /node_modules/,
-        use: [
-          'react-hot-loader/webpack',
-          'awesome-typescript-loader'
-        ]
-      },
-      {
         test: /\.(png|jpg|jpeg|gif|svg|woff|woff2)$/,
         use: 'url-loader?limit=10000'
       },

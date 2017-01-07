@@ -8,6 +8,13 @@ const prod = {
   module: {
     rules: [
       {
+        test: /\.tsx?$/,
+        exclude: /node_modules/,
+        use: [
+          'awesome-typescript-loader'
+        ]
+      },
+      {
         test: /\.css$/,
         exclude: /node_modules/,
         loader: ExtractTextPlugin.extract({

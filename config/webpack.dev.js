@@ -16,6 +16,14 @@ const dev = {
   module: {
     rules: [
       {
+        test: /\.tsx?$/,
+        exclude: /node_modules/,
+        use: [
+          'react-hot-loader/webpack',
+          'awesome-typescript-loader'
+        ]
+      },
+      {
         test: /\.css$/,
         exclude: /node_modules/,
         use: [
