@@ -1,8 +1,8 @@
-import path from 'path';
-import webpack from 'webpack';
-import HtmlWebpackPlugin from 'html-webpack-plugin';
-import reporter from 'postcss-reporter';
-import cssNext from 'postcss-cssnext';
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path');
+const webpack = require('webpack');
+const cssNext = require('postcss-cssnext');
+const reporter = require('postcss-reporter');
 
 const common = {
   entry: {
@@ -18,9 +18,9 @@ const common = {
     rules: [
       {
         enforce: 'pre',
-        test: /\.js?$/,
+        test: /\.tsx?$/,
         exclude: /node_modules/,
-        use: 'eslint-loader'
+        use: 'tslint-loader'
       },
       {
         test: /\.(png|jpg|jpeg|gif|svg|woff|woff2)$/,
@@ -34,8 +34,12 @@ const common = {
   },
 
   plugins: [
-    new webpack.optimize.OccurrenceOrderPlugin(true),
+    new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.NoErrorsPlugin(),
+
+    new HtmlWebpackPlugin({
+      template: 'src/index.html'
+    }),
 
     new webpack.LoaderOptionsPlugin({
       options: {
@@ -47,21 +51,13 @@ const common = {
           reporter
         ]
       }
-    }),
-
-    new HtmlWebpackPlugin({
-      template: path.join(__dirname, '../src/index.html')
     })
   ],
 
   resolve: {
     extensions: ['*', '.ts', '.tsx', '.js', '.css', '.html'],
     modules: ['node_modules']
-  },
-
-  performance: {
-    hints: process.env.NODE_ENV === 'production' ? 'warning' : false
   }
 };
 
-export default common;
+module.exports = common;

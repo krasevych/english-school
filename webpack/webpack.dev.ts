@@ -74,8 +74,5 @@ const dev: webpack.Configuration = {
         })
     ]
 };
-let a= {a:1, a:2};
-let b = {...a,b:1, b:2};
-console.log(111111,b);
 
 export default merge(common, dev);
