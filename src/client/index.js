@@ -5,22 +5,12 @@ import React from 'react';
 import Root from './root';
 import configureStore from '../app/redux/store';
 
-const renderApp = (App) => {
-  const store = configureStore();
+const store = configureStore();
 
-  render(
-    <AppContainer>
-      <App store={store} />
-    </AppContainer>,
-    document.getElementById('root')
-  );
-};
+render(
+  <AppContainer>
+    <Root store={store} />
+  </AppContainer>,
+  document.getElementById('root')
+);
 
-renderApp(Root);
-
-if (module.hot) {
-  module.hot.accept('./root', () => {
-    const NextApp = require('./root');
-    renderApp(NextApp);
-  });
-}

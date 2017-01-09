@@ -7,21 +7,33 @@ const app = express();
 if (process.env.NODE_ENV === 'development') {
   const webpack = require('webpack');
   const compiler = webpack(config);
-
-  app.use(require('webpack-dev-middleware')(compiler, {
+  const webpackDevMiddleware = require('webpack-dev-middleware');
+  const webpackHotMiddleware = require('webpack-hot-middleware');
+  const middleware = webpackDevMiddleware(compiler, {
     publicPath: config.output.publicPath,
+    hot: true,
     historyApiFallback: true,
     stats: {
       colors: true,
     },
     noInfo: true
-  }));
+  });
 
-  app.use(require('webpack-hot-middleware')(compiler));
+  const fs = middleware.fileSystem;
+
+  app.use(middleware);
+  app.use(webpackHotMiddleware(compiler));
+
+  app.get('*', (req, res) => {
+    fs.readFile(path.join(compiler.outputPath, 'index.html'), (err, file) => {
+      if (err) {
+        res.sendStatus(404);
+      } else {
+        res.send(file.toString());
+      }
+    });
+  });
 }
-
-app.get('*', (req, res) =>
-    res.sendFile(path.join(__dirname, '..', 'index.html')));
 
 app.listen(3005, (err) => {
   if (err) {

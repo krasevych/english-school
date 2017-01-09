@@ -1,22 +1,31 @@
 import React, { Component, PropTypes } from 'react';
 import { Provider } from 'react-redux';
-import { Router, Route, IndexRoute, browserHistory } from 'react-router';
+import { Router, Route, browserHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 
-const Parent = ({ children }) => {
-  console.log(111, children);
-  return (
-    <div>{children}</div>
-  );
-};
+class Parent extends Component {
+  render() {
+    return (
+      <div>
+        <h1>1151</h1>
+        <span>{this.props.children}</span>
+      </div>
+    );
+  }
+}
 
 Parent.propTypes = {
   children: PropTypes.any
 };
 
-const Hello = ({ params }) => (
-  <div>hello {params.id} </div>
-);
+
+class Hello extends Component {
+  render() {
+    return (
+      <div>hello1 {this.props.params.id} </div>
+    );
+  }
+}
 
 Hello.propTypes = {
   params: PropTypes.object
@@ -30,8 +39,6 @@ export default class Root extends Component {
 
   render() {
     const { store } = this.props;
-    console.log(111, store);
-
     const history = syncHistoryWithStore(
       browserHistory,
       store,
@@ -44,8 +51,7 @@ export default class Root extends Component {
       <Provider store={store}>
         <Router history={history}>
           <Route path="/" component={Parent}>
-            <IndexRoute component={Hello} />
-            <Route path="hello" component={Hello} />
+            <Route path="hello(/:id)" component={Hello} />
           </Route>
         </Router>
       </Provider>
