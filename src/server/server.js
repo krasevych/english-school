@@ -1,4 +1,3 @@
-/* eslint-disable global-require, import/no-extraneous-dependencies */
 import path from 'path';
 import express from 'express';
 import config from '../../config/webpack.dev';
@@ -21,8 +20,7 @@ if (process.env.NODE_ENV === 'development') {
   app.use(require('webpack-hot-middleware')(compiler));
 }
 
-app.route('*')
-  .get((req, res) =>
+app.get('*', (req, res) =>
     res.sendFile(path.join(__dirname, '..', 'index.html')));
 
 app.listen(3005, (err) => {

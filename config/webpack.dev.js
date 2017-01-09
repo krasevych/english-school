@@ -8,7 +8,7 @@ const dev = {
   entry: [
     'webpack-hot-middleware/client',
     'react-hot-loader/patch',
-    './src/main.tsx'
+    './src/client'
   ],
 
   module: {
