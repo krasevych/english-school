@@ -12,6 +12,7 @@
   "env": {
     "development": {
       "plugins": [
+        "transform-flow-strip-types",
         [
           "react-transform",
           {

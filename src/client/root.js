@@ -1,3 +1,5 @@
+// @flow
+
 import React, { Component, PropTypes } from 'react';
 import { Provider } from 'react-redux';
 import { Router, Route, browserHistory } from 'react-router';
@@ -5,9 +7,11 @@ import { syncHistoryWithStore } from 'react-router-redux';
 
 class Parent extends Component {
   render() {
+    const it: string = 111;
+
     return (
       <div>
-        <h1>1151</h1>
+        <h1>1151{ it }</h1>
         <span>{this.props.children}</span>
       </div>
     );

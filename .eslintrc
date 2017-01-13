@@ -1,6 +1,9 @@
 {
   "parser": "babel-eslint",
-  "extends": "eslint-config-airbnb",
+  "extends": [
+    "eslint-config-airbnb",
+    "plugin:flowtype/recommended"
+  ],
   "env": {
     "browser": true,
     "node": true
@@ -50,9 +53,13 @@
   },
   "plugins": [
     "react",
-    "import"
+    "import",
+    "flowtype"
   ],
   "settings": {
+    "flowtype": {
+      "onlyFilesWithFlowAnnotation": true
+    },
     "import/parser": "babel-eslint",
     "import/resolve": {
       "moduleDirectory": [
