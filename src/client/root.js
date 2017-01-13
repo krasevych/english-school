@@ -8,9 +8,7 @@ import { syncHistoryWithStore } from 'react-router-redux';
 class Parent extends Component {
   render() {
     return (
-      <div>
-        <span>{this.props.children}</span>
-      </div>
+      <div>{this.props.children}</div>
     );
   }
 }
@@ -24,7 +22,6 @@ class Hello extends Component {
   render() {
     return (
       <div>
-        <Parent />
         <span>hello1 {this.props.params.id} </span>
       </div>
     );
