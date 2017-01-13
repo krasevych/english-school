@@ -5,20 +5,10 @@ import { Provider } from 'react-redux';
 import { Router, Route, browserHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 
-type TimelyProps = {
-  date: Date,
-  name: string,
-  excited: boolean,
-  children: string;
-};
-
-class Parent extends Component<void, TimelyProps> {
+class Parent extends Component {
   render() {
-    const it: string = 111;
-
     return (
       <div>
-        <h1>1151{ it }</h1>
         <span>{this.props.children}</span>
       </div>
     );
