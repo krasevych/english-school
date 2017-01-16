@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "English School",
   "scripts": {
-    "start": "SET NODE_ENV=development& babel-node ./src/server/server.js",
+    "start": "SET NODE_ENV=development& node ./src/server",
     "test": "karma start",
     "build": "rimraf dist && webpack -p --env.prod --display-modules --display-reasons --progress --profile --bail --color",
     "build2": "SET NODE_ENV=prodaction& rimraf dist && webpack --config ./config/prod.babel.js"
@@ -34,6 +34,7 @@
     "babel-plugin-react-transform": "^2.0.2",
     "babel-plugin-transform-decorators-legacy": "^1.3.4",
     "babel-plugin-transform-flow-strip-types": "^6.21.0",
+    "babel-plugin-transform-runtime": "^6.15.0",
     "babel-preset-es2015": "^6.18.0",
     "babel-preset-react": "^6.16.0",
     "babel-preset-stage-0": "^6.16.0",
