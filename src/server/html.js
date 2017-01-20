@@ -23,6 +23,7 @@ export default class Html extends Component {
         <body>
           <div id="root" dangerouslySetInnerHTML={{ __html: content }} />
           <script dangerouslySetInnerHTML={{ __html: initialState }} />
+          <script src="/static/app.js"></script>
         </body>
       </html>
     );

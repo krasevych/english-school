@@ -1,16 +1,37 @@
+import path from 'path';
 const webpack = require('webpack');
 const common = require('./webpack.common');
 const merge = require('webpack-merge');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
+const vendor = [
+  'react',
+  'react-dom',
+  'redux',
+  'react-redux',
+  'redux-thunk',
+  'immutable',
+  'redux-immutablejs',
+  'react-router',
+  'react-router-redux',
+  // 'react-helmet'
+];
+
 const prod = {
+  entry: {
+    main: './src/client',
+    vendor
+  },
+
+  output: {
+    filename: '[name]_[chunkhash].js',
+    chunkFilename: '[name]_[chunkhash].js',
+    path: path.join(__dirname, '..', 'dist'),
+    publicPath: '/static/'
+  },
+
   module: {
     rules: [
-      {
-        test: /\.tsx?$/,
-        exclude: /node_modules/,
-        use: 'awesome-typescript-loader'
-      },
       {
         test: /\.css$/,
         exclude: /node_modules/,

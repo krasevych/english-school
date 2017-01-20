@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import { Route, IndexRoute, Link } from 'react-router';
 
 const App = ({ children }) => (
@@ -10,14 +10,18 @@ const App = ({ children }) => (
       {' '}
       <Link to="/foo">Foo</Link>
       {' '}
-      <Link to="/bar">Bar</Link>
+      <Link to="/bar">Bar34343</Link>
     </header>
     {children}
   </div>
 );
 
+App.propTypes = {
+  children: PropTypes.any
+};
+
 const Home = () => (<div>Home!</div>);
-const Foo = () => (<div>Foo!</div>);
+const Foo = () => (<div>Foo111!</div>);
 const Bar = () => (<div>Bar!</div>);
 
 const routes = (

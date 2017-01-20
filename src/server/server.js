@@ -35,7 +35,6 @@ if (process.env.NODE_ENV === 'development') {
    });
    });*/
   setTimeout(() => {
-
     fs.readFile(path.join(compiler.outputPath, 'main.js'), (err, file) => {
       if (err) {
         console.log(333, err);

@@ -1,9 +1,8 @@
-// @flow
-
 import React, { Component, PropTypes } from 'react';
 import { Provider } from 'react-redux';
-import { Router, Route, browserHistory } from 'react-router';
+import { Router, browserHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
+import routes from '../app/routes';
 
 class Parent extends Component {
   render() {
@@ -46,11 +45,7 @@ export default class Root extends Component {
 
     return (
       <Provider store={store}>
-        <Router history={history}>
-          <Route path="/" component={Parent}>
-            <Route path="hello(/:id)" component={Hello} />
-          </Route>
-        </Router>
+        <Router history={history} routes={routes} />
       </Provider>
     );
   }
