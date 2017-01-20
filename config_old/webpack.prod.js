@@ -1,3 +1,4 @@
+'use strict';
 const webpack = require('webpack');
 const common = require('./webpack.common');
 const merge = require('webpack-merge');
@@ -9,7 +10,9 @@ const prod = {
       {
         test: /\.tsx?$/,
         exclude: /node_modules/,
-        use: 'awesome-typescript-loader'
+        use: [
+          'awesome-typescript-loader'
+        ]
       },
       {
         test: /\.css$/,
@@ -33,11 +36,7 @@ const prod = {
   },
 
   plugins: [
-    new webpack.optimize.UglifyJsPlugin({
-      compressor: {
-        warnings: false
-      }
-    }),
+    new webpack.optimize.DedupePlugin(),
 
     new ExtractTextPlugin({
       filename: '[name]_[hash].css'
@@ -51,4 +50,4 @@ const prod = {
   ]
 };
 
-export default merge(common, prod);
+module.exports = merge(common, prod);

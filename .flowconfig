@@ -1,0 +1,11 @@
+[ignore]
+.*/node_modules/**/*.js
+
+[include]
+./src/**/*.js
+
+[libs]
+
+[options]
+module.file_ext=.js
+sharedmemory.hash_table_pow=19

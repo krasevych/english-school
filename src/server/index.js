@@ -1,4 +1,3 @@
-require('ts-node').register({
-  project: "./tsconfig.json"
-});
-require('./server.ts');
+require('babel-register');
+require('babel-polyfill');
+require('./server.js');
