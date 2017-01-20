@@ -40,13 +40,9 @@ export default class Root extends Component {
 
   render() {
     const { store } = this.props;
-    const history = syncHistoryWithStore(
-      browserHistory,
-      store,
-      {
-        selectLocationState: state => state.get('routing')
-      }
-    );
+    const history = syncHistoryWithStore(browserHistory, store, {
+      selectLocationState: state => state.get('routing')
+    });
 
     return (
       <Provider store={store}>

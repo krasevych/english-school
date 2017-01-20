@@ -11,7 +11,7 @@ const common = {
 
   output: {
     path: path.join(__dirname, '..', 'dist'),
-    filename: '[name]_[hash].js'
+    filename: '[name].js'
   },
 
   module: {

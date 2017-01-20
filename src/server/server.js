@@ -1,6 +1,7 @@
 import path from 'path';
 import express from 'express';
 import config from '../../config/webpack.dev';
+import createSSR from './create-ssr';
 
 const app = express();
 
@@ -24,15 +25,27 @@ if (process.env.NODE_ENV === 'development') {
   app.use(middleware);
   app.use(webpackHotMiddleware(compiler));
 
-  app.get('*', (req, res) => {
-    fs.readFile(path.join(compiler.outputPath, 'index.html'), (err, file) => {
+  /*  app.get('*', (req, res) => {
+   fs.readFile(path.join(compiler.outputPath, 'index.html'), (err, file) => {
+   if (err) {
+   res.sendStatus(404);
+   } else {
+   res.send(file.toString());
+   }
+   });
+   });*/
+  setTimeout(() => {
+
+    fs.readFile(path.join(compiler.outputPath, 'main.js'), (err, file) => {
       if (err) {
-        res.sendStatus(404);
+        console.log(333, err);
+
       } else {
-        res.send(file.toString());
+        console.log(11111, file.toString());
       }
     });
-  });
+  }, 10000);
+  app.get('*', createSSR);
 }
 
 app.listen(3005, (err) => {
