@@ -2,5 +2,4 @@ yarn.lock
 School.iml
 .idea/
 node_modules/
-flow-typed/
 dist/
