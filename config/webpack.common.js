@@ -1,6 +1,4 @@
-import path from 'path';
 import webpack from 'webpack';
-import HtmlWebpackPlugin from 'html-webpack-plugin';
 import reporter from 'postcss-reporter';
 import cssNext from 'postcss-cssnext';
 

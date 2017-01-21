@@ -1,5 +1,5 @@
 import React from 'react';
-import fromJS from 'immutable';
+import { fromJS } from 'immutable';
 import { render } from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
 import { browserHistory } from 'react-router';

@@ -3,6 +3,22 @@ import webpack from 'webpack';
 import merge from 'webpack-merge';
 import common from './webpack.common';
 
+const babelOptions = {
+  plugins: [
+    ['transform-decorators-legacy'],
+    ['react-transform', {
+      transforms: [{
+        transform: 'react-transform-hmr',
+        imports: ['react'],
+        locals: ['module']
+      }, {
+        transform: 'react-transform-catch-errors',
+        imports: ['react', 'redbox-react']
+      }]
+    }]
+  ]
+};
+
 const dev = {
   devtool: 'cheap-module-eval-source-map',
 
@@ -21,6 +37,12 @@ const dev = {
 
   module: {
     rules: [
+      {
+        test: /\.js?$/,
+        exclude: /node_modules/,
+        loader: 'babel-loader',
+        options: babelOptions
+      },
       {
         test: /\.css$/,
         exclude: /node_modules/,

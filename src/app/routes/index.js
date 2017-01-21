@@ -1,28 +1,60 @@
-import React, { PropTypes } from 'react';
+import React, { PropTypes, Component } from 'react';
 import { Route, IndexRoute, Link } from 'react-router';
+import { push } from 'react-router-redux';
+import { connect } from 'react-redux';
 
-const App = ({ children }) => (
-  <div>
-    <header>
-      Links:
-      {' '}
-      <Link to="/">Home</Link>
-      {' '}
-      <Link to="/foo">Foo</Link>
-      {' '}
-      <Link to="/bar">Bar34343</Link>
-    </header>
-    {children}
-  </div>
-);
+@connect(null, { pushState: push }, null, { pure: false })
+class App extends Component {
+  render() {
+    const f = () => {
+      console.log(this.props.pushState);
+      this.props.pushState('/foo');
+    };
+    return (
+      <div>
+        <div onClick={() => f()}>asda
+        </div>
+
+        <header>
+          Links:
+          {' '}
+          <Link to="/">Home</Link>
+          {' '}
+          <Link to="/foo">Foo</Link>
+          {' '}
+          <Link to="/bar">Bar</Link>
+        </header>
+        {this.props.children}
+      </div>
+    );
+  }
+}
 
 App.propTypes = {
-  children: PropTypes.any
+  children: PropTypes.any,
+  pushState: PropTypes.any
 };
 
-const Home = () => (<div>Home!</div>);
-const Foo = () => (<div>Foo111!</div>);
-const Bar = () => (<div>Bar!</div>);
+@connect(null, { pushState: push }, null, { pure: false })
+class Home extends Component {
+  render() {
+    return (<div>Home!</div>);
+  }
+}
+
+@connect(null, { pushState: push }, null, { pure: false })
+class Foo extends Component {
+  render() {
+    return (<div>Foo!</div>);
+  }
+}
+
+@connect(null, { pushState: push }, null, { pure: false })
+class Bar extends Component {
+  render() {
+    return (<div>Bar!</div>);
+  }
+}
 
 const routes = (
   <Route path="/" component={App}>
