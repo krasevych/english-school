@@ -2,7 +2,9 @@ import React, { Component, PropTypes } from 'react';
 import { Provider } from 'react-redux';
 import { Router, browserHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
+
 import routes from '../app/routes';
+import { createSelectLocationState } from '../app/utils';
 
 export default class Root extends Component {
   static propTypes = {
@@ -12,7 +14,7 @@ export default class Root extends Component {
   render() {
     const { store } = this.props;
     const history = syncHistoryWithStore(browserHistory, store, {
-      selectLocationState: state => state.get('routing')
+      selectLocationState: createSelectLocationState('routing')
     });
 
     return (

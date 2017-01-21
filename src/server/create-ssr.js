@@ -6,13 +6,13 @@ import { renderToString } from 'react-dom/server';
 import Html from './html';
 import routes from '../app/routes';
 import configureStore from '../app/redux/store';
-
+import { createSelectLocationState } from '../app/utils';
 
 export default function createSSR(req, res) {
   const memoryHistory = createMemoryHistory(req.url);
   const store = configureStore(memoryHistory);
   const history = syncHistoryWithStore(memoryHistory, store, {
-    selectLocationState: state => state.get('routing')
+    selectLocationState: createSelectLocationState('routing')
   });
 
   match({ history, routes, location: req.url }, (err, redirectLocation, renderProps) => {

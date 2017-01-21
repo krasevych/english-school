@@ -3,7 +3,7 @@ import { Route, IndexRoute, Link } from 'react-router';
 import { push } from 'react-router-redux';
 import { connect } from 'react-redux';
 
-@connect(null, { pushState: push }, null, { pure: false })
+@connect(null, { pushState: push })
 class App extends Component {
   render() {
     const f = () => {
@@ -35,21 +35,18 @@ App.propTypes = {
   pushState: PropTypes.any
 };
 
-@connect(null, { pushState: push }, null, { pure: false })
 class Home extends Component {
   render() {
     return (<div>Home!</div>);
   }
 }
 
-@connect(null, { pushState: push }, null, { pure: false })
 class Foo extends Component {
   render() {
     return (<div>Foo!</div>);
   }
 }
 
-@connect(null, { pushState: push }, null, { pure: false })
 class Bar extends Component {
   render() {
     return (<div>Bar!</div>);
