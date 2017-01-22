@@ -1,9 +1,26 @@
+import path from 'path';
 import webpack from 'webpack';
 import merge from 'webpack-merge';
 import common from './webpack.common';
 
+const babelOptions = {
+  plugins: [
+    ['transform-decorators-legacy'],
+    ['react-transform', {
+      transforms: [{
+        transform: 'react-transform-hmr',
+        imports: ['react'],
+        locals: ['module']
+      }, {
+        transform: 'react-transform-catch-errors',
+        imports: ['react', 'redbox-react']
+      }]
+    }]
+  ]
+};
+
 const dev = {
-  devtool: 'source-map',
+  devtool: 'cheap-module-eval-source-map',
 
   entry: [
     'webpack-hot-middleware/client',
@@ -11,14 +28,20 @@ const dev = {
     './src/client'
   ],
 
+  output: {
+    path: path.join(__dirname, '..', 'dist'),
+    filename: 'app.js',
+    chunkFilename: '[name].js',
+    publicPath: '/static/'
+  },
+
   module: {
     rules: [
       {
         test: /\.js?$/,
         exclude: /node_modules/,
-        use: [
-          'babel-loader'
-        ]
+        loader: 'babel-loader',
+        options: babelOptions
       },
       {
         test: /\.css$/,
@@ -68,7 +91,7 @@ const dev = {
       __DEVELOPMENT__: true,
       __DEVTOOLS__: true
     })
-  ]
+  ],
 };
 
 export default merge(common, dev);

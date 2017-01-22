@@ -1,10 +1,17 @@
-import path from 'path';
+import compression from 'compression';
 import express from 'express';
 import config from '../../config/webpack.dev';
+import createSSR from './createSSR';
 
+const isProd = process.env.NODE_ENV === 'production';
 const app = express();
 
-if (process.env.NODE_ENV === 'development') {
+if (isProd) {
+  app.use(compression());
+  app.use('/static', express.static('dist'));
+}
+
+if (!isProd) {
   const webpack = require('webpack');
   const compiler = webpack(config);
   const webpackDevMiddleware = require('webpack-dev-middleware');
@@ -19,21 +26,11 @@ if (process.env.NODE_ENV === 'development') {
     noInfo: true
   });
 
-  const fs = middleware.fileSystem;
-
   app.use(middleware);
   app.use(webpackHotMiddleware(compiler));
-
-  app.get('*', (req, res) => {
-    fs.readFile(path.join(compiler.outputPath, 'index.html'), (err, file) => {
-      if (err) {
-        res.sendStatus(404);
-      } else {
-        res.send(file.toString());
-      }
-    });
-  });
 }
+
+app.get('*', createSSR);
 
 app.listen(3005, (err) => {
   if (err) {

@@ -1,19 +1,8 @@
-import path from 'path';
 import webpack from 'webpack';
-import HtmlWebpackPlugin from 'html-webpack-plugin';
 import reporter from 'postcss-reporter';
 import cssNext from 'postcss-cssnext';
 
 const common = {
-  entry: {
-    app: './src/main.tsx'
-  },
-
-  output: {
-    path: path.join(__dirname, '..', 'dist'),
-    filename: '[name]_[hash].js'
-  },
-
   module: {
     rules: [
       {
@@ -21,6 +10,13 @@ const common = {
         test: /\.js?$/,
         exclude: /node_modules/,
         use: 'eslint-loader'
+      },
+      {
+        test: /\.js?$/,
+        exclude: /node_modules/,
+        use: [
+          'babel-loader'
+        ]
       },
       {
         test: /\.(png|jpg|jpeg|gif|svg|woff|woff2)$/,
@@ -47,15 +43,11 @@ const common = {
           reporter
         ]
       }
-    }),
-
-    new HtmlWebpackPlugin({
-      template: path.join(__dirname, '../src/index.html')
     })
   ],
 
   resolve: {
-    extensions: ['*', '.ts', '.tsx', '.js', '.css', '.html'],
+    extensions: ['*', '.js', '.css', '.html'],
     modules: ['node_modules']
   },
 
