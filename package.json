@@ -4,7 +4,7 @@
   "description": "English School",
   "scripts": {
     "start": "npm run dev",
-    "dev": "concurrently --kill-others \"npm run dev:start\"",
+    "dev": "concurrently --kill-others \"npm run webpack:watch\" \"npm run dev:start\"",
     "webpack:watch": "better-npm-run webpack:watch",
     "dev:start": "better-npm-run dev:start",
     "test": "karma start",

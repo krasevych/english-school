@@ -23,7 +23,7 @@ const dev = {
   devtool: 'cheap-module-eval-source-map',
 
   entry: [
-    'webpack-hot-middleware/client',
+    'webpack-hot-middleware/client?path=http://localhost:3001/__webpack_hmr',
     'react-hot-loader/patch',
     './src/client'
   ],
@@ -32,7 +32,8 @@ const dev = {
     path: path.join(__dirname, '..', 'dist'),
     filename: 'app.js',
     chunkFilename: '[name].js',
-    publicPath: '/static/'
+    publicPath: 'http://localhost:3001/static/'
+    // publicPath: '/static/'
   },
 
   module: {
@@ -84,6 +85,7 @@ const dev = {
 
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
+    new webpack.NamedModulesPlugin(),
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify('development')

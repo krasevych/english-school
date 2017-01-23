@@ -13,16 +13,7 @@ const options = {
   quiet: true, // don’t output anything to the console
   noInfo: true, // suppress boring information
   hot: true, // adds the HotModuleReplacementPlugin and switch the server to hot mode. Note: make sure you don’t add HotModuleReplacementPlugin twice
-  inline: true, // also adds the webpack/hot/dev-server entry
-
-  // You can use it in two modes:
-  // watch mode (default): The compiler recompiles on file change.
-  // lazy mode: The compiler compiles on every request to the entry point.
-  lazy: false,
-
-  // network path for static files: fetch all statics from webpack development server
   publicPath: config.output.publicPath,
-
   headers: { 'Access-Control-Allow-Origin': '*' },
   stats: { colors: true }
 };
