@@ -6,11 +6,12 @@ import { RouterContext } from 'react-router';
 export default class Html extends Component {
   static propTypes = {
     store: PropTypes.object.isRequired,
-    renderProps: PropTypes.object
+    renderProps: PropTypes.object.isRequired,
+    assets: PropTypes.object.isRequired
   };
 
   render() {
-    const { store, renderProps } = this.props;
+    const { store, renderProps, assets } = this.props;
     const initialState = `window.__INITIAL_STATE__ = ${JSON.stringify(store.getState())}`;
     const content = renderToString(
       <Provider store={store}>
@@ -19,11 +20,11 @@ export default class Html extends Component {
     );
 
     return (
-      <html>
+      <html lang="en">
         <body>
           <div id="root" dangerouslySetInnerHTML={{ __html: content }} />
           <script dangerouslySetInnerHTML={{ __html: initialState }} />
-          <script src="http://localhost:3001/static/app.js"></script>
+          <script src={assets.javascript.main} />
         </body>
       </html>
     );
