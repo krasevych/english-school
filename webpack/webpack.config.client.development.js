@@ -1,7 +1,9 @@
 import webpack from 'webpack';
 import merge from 'webpack-merge';
 import getBaseConfig from './webpack.config.client';
+import appConfig from '../src/app/config';
 
+const { host, port } = appConfig.webpack.server;
 const baseConfig = getBaseConfig({
   development: true,
   css_bundle: true
@@ -29,14 +31,14 @@ const config = {
 
   entry: {
     main: [
-      'webpack-hot-middleware/client?path=http://localhost:3001/__webpack_hmr',
+      `webpack-hot-middleware/client?path=${host}:${port}/__webpack_hmr`,
       'react-hot-loader/patch',
       baseConfig.entry.main
     ]
   },
 
   output: {
-    publicPath: `http://localhost:3001${baseConfig.output.publicPath}`
+    publicPath: `${host}:${port}${baseConfig.output.publicPath}`
   },
 
   module: {
@@ -56,9 +58,7 @@ const config = {
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify('development')
-      },
-      __DEVELOPMENT__: true,
-      __DEVTOOLS__: true
+      }
     })
   ]
 };

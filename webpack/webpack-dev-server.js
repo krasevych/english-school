@@ -3,11 +3,11 @@ import webpack from 'webpack';
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 import config from './webpack.config.client.development';
-
-const WEBPACK_DEV_SERVER_PORT = process.env.PORT || 3001;
+import appConfig from '../src/app/config';
 
 const app = new Express();
 const compiler = webpack(config);
+const { port } = appConfig.webpack.server;
 
 const options = {
   quiet: true,
@@ -21,11 +21,11 @@ const options = {
 app.use(webpackDevMiddleware(compiler, options));
 app.use(webpackHotMiddleware(compiler));
 
-app.listen(WEBPACK_DEV_SERVER_PORT, (error) => {
+app.listen(port, (error) => {
   if (error) {
     console.error(error.stack || error);
     throw error;
   }
 
-  console.info('Webpack development server listening on port %s', WEBPACK_DEV_SERVER_PORT);
+  console.info('Webpack development server listening on port %s', port);
 });
