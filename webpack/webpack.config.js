@@ -14,8 +14,7 @@ const config = {
   output: {
     path: path.resolve(rootFolder, 'src/build/assets'),
     publicPath: '/assets/',
-    filename: '[name].[hash].js',
-    chunkFilename: '[name].[hash].js'
+    filename: '[name].[hash].js'
   },
 
   module: {
@@ -61,7 +60,7 @@ const config = {
 
   resolve: {
     extensions: ['*', '.js', '.css', '.html'],
-    modules: ['node_modules']
+    modules: ['src', 'node_modules']
   }
 };
 

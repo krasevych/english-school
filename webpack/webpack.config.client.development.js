@@ -26,7 +26,7 @@ const babelOptions = {
 };
 
 const config = {
-  devtool: 'inline-eval-cheap-source-map',
+  devtool: 'cheap-module-eval-source-map',
   performance: { hints: false },
 
   entry: {

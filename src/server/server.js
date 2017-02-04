@@ -5,10 +5,9 @@ import appConfig from '../app/config';
 
 const { host, port } = appConfig.server;
 const app = express();
-const isProd = process.env.NODE_ENV === 'production';
 
 export default function (parameters) {
-  if (isProd) {
+  if (appConfig.isProd) {
     app.use(compression());
     app.use('/', express.static('src/build'));
   }

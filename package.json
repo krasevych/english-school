@@ -4,15 +4,25 @@
   "description": "English School",
   "scripts": {
     "start": "npm run dev:start",
-    "dev:start": "run-p dev:server:prepare dev:server:build dev:client:build dev:server:delay",
+    "dev:start": "run-p dev:server:prepare dev:server:build dev:client:build dev:server:start",
     "dev:server:prepare": "universal-webpack --settings ./webpack/universal-webpack-settings.json prepare",
     "dev:server:build": "webpack --config ./webpack/webpack.config.server.development.babel.js --watch --colors --display-error-details",
-    "dev:server:delay": "run-s delay dev:server:start",
+    "dev:server:delay": "run-s dev:server:start",
     "dev:server:start": "nodemon ./src/server/start.babel.js --watch ./src/build/server",
     "dev:client:build": "babel-node ./webpack/webpack-dev-server.js",
-    "delay": "babel-node ./node_modules/sleep 1000"
+    "delay": "babel-node ./node_modules/sleep 1000",
+    "prod:start": "npm-run-all prod:client:build prod:server:build prod:server:start",
+    "prod:client:build": "webpack --config ./webpack/webpack.config.client.production.babel.js --colors --display-error-details",
+    "prod:server:build": "webpack --config ./webpack/webpack.config.server.production.babel.js --colors --display-error-details",
+    "prod:server:start": "better-npm-run prod:server:start"
   },
   "betterScripts": {
+    "prod:server:start": {
+      "env": {
+        "NODE_ENV": "production"
+      },
+      "command": "node ./src/server/start.babel.js"
+    }
   },
   "license": "MIT",
   "dependencies": {
@@ -48,6 +58,7 @@
     "babel-preset-stage-0": "^6.16.0",
     "babel-register": "^6.18.0",
     "better-npm-run": "^0.0.14",
+    "clean-webpack-plugin": "^0.1.15",
     "concurrently": "^3.1.0",
     "css-loader": "^0.23.1",
     "eslint": "^3.13.0",
