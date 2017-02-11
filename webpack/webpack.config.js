@@ -1,8 +1,22 @@
+import path from 'path';
 import webpack from 'webpack';
 import reporter from 'postcss-reporter';
 import cssNext from 'postcss-cssnext';
 
-const common = {
+const rootFolder = path.resolve(__dirname, '..');
+const config = {
+  context: rootFolder,
+
+  entry: {
+    main: './src/client'
+  },
+
+  output: {
+    path: path.resolve(rootFolder, 'src/build/assets'),
+    publicPath: '/assets/',
+    filename: '[name].[hash].js'
+  },
+
   module: {
     rules: [
       {
@@ -14,9 +28,7 @@ const common = {
       {
         test: /\.js?$/,
         exclude: /node_modules/,
-        use: [
-          'babel-loader'
-        ]
+        loader: 'babel-loader'
       },
       {
         test: /\.(png|jpg|jpeg|gif|svg|woff|woff2)$/,
@@ -48,12 +60,8 @@ const common = {
 
   resolve: {
     extensions: ['*', '.js', '.css', '.html'],
-    modules: ['node_modules']
-  },
-
-  performance: {
-    hints: process.env.NODE_ENV === 'production' ? 'warning' : false
+    modules: ['src', 'node_modules']
   }
 };
 
-export default common;
+export default config;
