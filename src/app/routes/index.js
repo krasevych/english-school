@@ -2,6 +2,7 @@ import React, { PropTypes, Component } from 'react';
 import { Route, IndexRoute, Link } from 'react-router';
 import { push } from 'react-router-redux';
 import { connect } from 'react-redux';
+import styled from 'styled-components';
 
 @connect(null, { pushState: push })
 class App extends Component {
@@ -35,9 +36,13 @@ App.propTypes = {
   pushState: PropTypes.any
 };
 
+const HomeWrapper = styled.section`
+background: red;
+`;
+
 class Home extends Component {
   render() {
-    return (<div>Home!</div>);
+    return (<HomeWrapper>Home!</HomeWrapper>);
   }
 }
 
