@@ -19,7 +19,7 @@ export default class Root extends Component {
 
     return (
       <Provider store={store}>
-        <Router history={history} routes={routes} />
+        <Router history={history} routes={routes(store)} />
       </Provider>
     );
   }

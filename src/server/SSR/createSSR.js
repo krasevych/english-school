@@ -14,21 +14,21 @@ export default function createSSR(assets) {
     const history = syncHistoryWithStore(memoryHistory, store, {
       selectLocationState: createSelectLocationState('routing')
     });
+    match({ history, routes: routes(), location: req.url },
+      (err, redirectLocation, renderProps) => {
+        if (err) {
+          res.status(500).send(err.message);
+        } else if (redirectLocation) {
+          res.redirect(302, redirectLocation.pathname + redirectLocation.search);
+        } else if (renderProps) {
+          const content = renderToString(<Html
+            renderProps={renderProps}
+            store={store}
+            assets={assets}
+          />);
 
-    match({ history, routes, location: req.url }, (err, redirectLocation, renderProps) => {
-      if (err) {
-        res.status(500).send(err.message);
-      } else if (redirectLocation) {
-        res.redirect(302, redirectLocation.pathname + redirectLocation.search);
-      } else if (renderProps) {
-        const content = renderToString(<Html
-          renderProps={renderProps}
-          store={store}
-          assets={assets}
-        />);
-
-        res.send(`<!doctype html>\n${content}`);
-      }
-    });
+          res.send(`<!doctype html>\n${content}`);
+        }
+      });
   };
 }
