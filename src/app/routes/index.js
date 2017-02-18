@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { AppContainer } from '../containers';
 
 const HomeWrapper = styled.section`
-background: red;
+background: green;
 color: ${props => (props.primary ? 'white' : 'palevioletred')};
 `;
 

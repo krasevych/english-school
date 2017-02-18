@@ -38,6 +38,19 @@ const config = {
         test: /\.(eot|ttf|wav|mp3)$/,
         use: 'file-loader'
       },
+      {
+        test: /\.(css)$/,
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 2,
+              sourceMap: true
+            }
+          }
+        ]
+      }
     ]
   },
 
@@ -60,7 +73,10 @@ const config = {
 
   resolve: {
     extensions: ['*', '.js', '.css', '.html'],
-    modules: ['src', 'node_modules']
+    modules: ['src', 'node_modules'],
+    alias: {
+      app: path.resolve(rootFolder, 'src/app')
+    }
   }
 };
 
