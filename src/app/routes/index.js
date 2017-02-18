@@ -5,7 +5,7 @@ import React, {
   PropTypes
 } from 'react';
 
-import AppContainer from '../containers/AppContainer';
+import AppContainer from 'app/containers/AppContainer';
 
 const HomeWrapper = styled.section`
 background: green;

@@ -54,7 +54,8 @@
     ],
     "no-console": 0,
     "no-alert": 0,
-    "no-unused-vars": 1
+    "no-unused-vars": 1,
+    "import/extensions": 0
   },
   "plugins": [
     "react",

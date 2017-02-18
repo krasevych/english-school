@@ -1,7 +1,7 @@
 import React, { PropTypes, Component } from 'react';
 import { push } from 'react-router-redux';
 import { connect } from 'react-redux';
-import App from '../../components/App';
+import App from 'app/components/App';
 
 @connect(null, { pushState: push })
 export default class AppContainer extends Component {
