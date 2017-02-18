@@ -1,5 +1,5 @@
-import { LOCATION_CHANGE } from 'react-router-redux';
 import { fromJS } from 'immutable';
+import { LOCATION_CHANGE } from 'react-router-redux';
 
 const routeInitialState = fromJS({
   locationBeforeTransitions: null
