@@ -15,6 +15,11 @@ const vendor = [
   'redux-immutablejs',
   'react-router',
   'react-router-redux',
+  'redux-connect',
+  'react-hot-loader',
+  'styled-components',
+  // 'lodash',
+  // 'react-form',
   // 'react-helmet'
 ];
 

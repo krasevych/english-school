@@ -12,7 +12,7 @@ const config = {
   },
 
   output: {
-    path: path.resolve(rootFolder, 'src/build/assets'),
+    path: path.resolve(rootFolder, 'static/assets'),
     publicPath: '/assets/',
     filename: '[name].[hash].js'
   },

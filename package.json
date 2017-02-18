@@ -8,7 +8,7 @@
     "dev:server:prepare": "universal-webpack --settings ./webpack/universal-webpack-settings.json prepare",
     "dev:server:build": "webpack --config ./webpack/webpack.config.server.development.babel.js --watch --colors --display-error-details",
     "dev:server:delay": "run-s delay dev:server:start",
-    "dev:server:start": "nodemon ./src/server/start.babel.js --watch ./src/build/server",
+    "dev:server:start": "nodemon ./src/server/start.babel.js --watch ./static/server",
     "dev:client:build": "babel-node ./webpack/webpack-dev-server.js",
     "delay": "node ./node_modules/npm-delay 10000",
     "prod:start": "npm-run-all prod:client:build prod:server:build prod:server:start",
@@ -33,7 +33,6 @@
     "immutable": "^3.8.1",
     "lodash": "^4.17.4",
     "react": "^15.4.1",
-    "react-css-modules": "^4.1.0",
     "react-dom": "^15.4.1",
     "react-form": "^0.9.1",
     "react-hot-loader": "3.0.0-beta.6",
@@ -44,6 +43,7 @@
     "redux-connect": "^5.0.0",
     "redux-immutablejs": "^0.0.8",
     "redux-thunk": "^2.1.0",
+    "serve-favicon": "^2.3.2",
     "styled-components": "^1.4.3"
   },
   "devDependencies": {
