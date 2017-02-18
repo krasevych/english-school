@@ -1,7 +1,10 @@
 import React from 'react';
-import { createMemoryHistory, match } from 'react-router';
-import { syncHistoryWithStore } from 'react-router-redux';
+import styleSheet from 'styled-components/lib/models/StyleSheet';
+import { loadOnServer } from 'redux-connect';
 import { renderToString } from 'react-dom/server';
+import { syncHistoryWithStore } from 'react-router-redux';
+import { createMemoryHistory, match } from 'react-router';
+
 import Html from './html';
 import routes from '../../app/routes';
 import configureStore from '../../app/redux/store';
@@ -11,9 +14,11 @@ export default function createSSR(assets) {
   return (req, res) => {
     const memoryHistory = createMemoryHistory(req.url);
     const store = configureStore(memoryHistory);
+    console.log(7777, store.getState());
     const history = syncHistoryWithStore(memoryHistory, store, {
       selectLocationState: createSelectLocationState('routing')
     });
+
     match({ history, routes: routes(), location: req.url },
       (err, redirectLocation, renderProps) => {
         if (err) {
@@ -21,13 +26,16 @@ export default function createSSR(assets) {
         } else if (redirectLocation) {
           res.redirect(302, redirectLocation.pathname + redirectLocation.search);
         } else if (renderProps) {
-          const content = renderToString(<Html
-            renderProps={renderProps}
-            store={store}
-            assets={assets}
-          />);
+          loadOnServer({ ...renderProps, store }).then(() => {
+            // setTimeout(() => {
+            const styles = styleSheet.rules().map(rule => rule.cssText).join('\n');
+            console.log(111, styles);
 
-          res.send(`<!doctype html>\n${content}`);
+            const content = renderToString(<Html {...{ renderProps, store, assets, styles }} />);
+
+            res.send(`<!doctype html>\n${content}`);
+            // }, 0);
+          });
         }
       });
   };

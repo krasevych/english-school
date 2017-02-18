@@ -1,5 +1,10 @@
 import styled from 'styled-components';
-import React, { Component } from 'react';
+import { asyncConnect } from 'redux-connect';
+import React, {
+  Component,
+  PropTypes
+} from 'react';
+
 import { AppContainer } from '../containers';
 
 const HomeWrapper = styled.section`
@@ -13,6 +18,24 @@ class Home extends Component {
   }
 }
 
+@asyncConnect([{
+  key: 'lunch',
+  promise: ({ params, helpers }) => Promise.resolve({ id: 1, name: 'Borsch' })
+}])
+class Test extends Component {
+  static propTypes = {
+    lunch: PropTypes.any
+  };
+
+  render() {
+    const lunch = this.props.lunch;
+    console.log(888, lunch);
+    return (
+      <div>{lunch.name}</div>
+    );
+  }
+}
+
 export default function routes() {
   return {
     path: '/',
@@ -21,6 +44,10 @@ export default function routes() {
       {
         path: '/home',
         component: Home
+      },
+      {
+        path: '/test',
+        component: Test
       }
     ]
   };

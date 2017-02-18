@@ -1,5 +1,14 @@
-import React, { PropTypes, Component } from 'react';
+import styled from 'styled-components';
 import { Link } from 'react-router';
+import React, {
+  PropTypes,
+  Component
+} from 'react';
+
+const Wrapper = styled.div`
+background: green;
+color: #fff;
+`;
 
 export default class App extends Component {
   static propTypes = {
@@ -8,7 +17,7 @@ export default class App extends Component {
 
   render() {
     return (
-      <div>
+      <Wrapper>
         <header>
           Links:
           {' '}
@@ -16,10 +25,10 @@ export default class App extends Component {
           {' '}
           <Link to="/foo">Foo</Link>
           {' '}
-          <Link to="/bar">Bar</Link>
+          <Link to="/test">Test</Link>
         </header>
         {this.props.children}
-      </div>
+      </Wrapper>
     );
   }
 }

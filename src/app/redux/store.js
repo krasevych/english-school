@@ -1,7 +1,7 @@
+import thunkMiddleware from 'redux-thunk';
 import { fromJS } from 'immutable';
 import { createStore, applyMiddleware, compose } from 'redux';
 import { routerMiddleware } from 'react-router-redux';
-import thunkMiddleware from 'redux-thunk';
 import createReducer from './reducer';
 
 export default function configureStore(history, initialState = {}) {

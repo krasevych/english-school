@@ -1,7 +1,11 @@
-import React, { Component, PropTypes } from 'react';
+import React, {
+  Component,
+  PropTypes
+} from 'react';
 import { Provider } from 'react-redux';
-import { Router, browserHistory } from 'react-router';
+import { ReduxAsyncConnect } from 'redux-connect';
 import { syncHistoryWithStore } from 'react-router-redux';
+import { Router, browserHistory } from 'react-router';
 
 import routes from '../app/routes';
 import { createSelectLocationState } from '../app/utils';
@@ -19,7 +23,11 @@ export default class Root extends Component {
 
     return (
       <Provider store={store}>
-        <Router history={history} routes={routes(store)} />
+        <Router
+          render={props => <ReduxAsyncConnect {...props} />}
+          history={history}
+          routes={routes(store)}
+        />
       </Provider>
     );
   }
