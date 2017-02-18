@@ -5,7 +5,7 @@ import React, {
   PropTypes
 } from 'react';
 
-import { AppContainer } from '../containers';
+import AppContainer from '../containers/AppContainer';
 
 const HomeWrapper = styled.section`
 background: green;
@@ -20,7 +20,7 @@ class Home extends Component {
 
 @asyncConnect([{
   key: 'lunch',
-  promise: ({ params, helpers }) => Promise.resolve({ id: 1, name: 'Borsch' })
+  promise: () => Promise.resolve({ id: 1, name: 'Borsch' })
 }])
 class Test extends Component {
   static propTypes = {
@@ -29,7 +29,6 @@ class Test extends Component {
 
   render() {
     const lunch = this.props.lunch;
-    console.log(888, lunch);
     return (
       <div>{lunch.name}</div>
     );

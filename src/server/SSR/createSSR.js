@@ -14,7 +14,6 @@ export default function createSSR(assets) {
   return (req, res) => {
     const memoryHistory = createMemoryHistory(req.url);
     const store = configureStore(memoryHistory);
-    console.log(7777, store.getState());
     const history = syncHistoryWithStore(memoryHistory, store, {
       selectLocationState: createSelectLocationState('routing')
     });
@@ -27,14 +26,10 @@ export default function createSSR(assets) {
           res.redirect(302, redirectLocation.pathname + redirectLocation.search);
         } else if (renderProps) {
           loadOnServer({ ...renderProps, store }).then(() => {
-            // setTimeout(() => {
             const styles = styleSheet.rules().map(rule => rule.cssText).join('\n');
-            console.log(111, styles);
-
             const content = renderToString(<Html {...{ renderProps, store, assets, styles }} />);
 
             res.send(`<!doctype html>\n${content}`);
-            // }, 0);
           });
         }
       });
