@@ -4,15 +4,16 @@ import React, {
 } from 'react';
 import Wrapper from './Wrapper';
 
-export default class App extends PureComponent {
+export default class Landing extends PureComponent {
   static propTypes = {
     children: PropTypes.element.isRequired
   };
 
   render() {
+    const { children } = this.props;
     return (
       <Wrapper>
-        {this.props.children}
+        {children}
       </Wrapper>
     );
   }

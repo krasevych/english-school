@@ -4,15 +4,13 @@ import React, {
 } from 'react';
 import Wrapper from './Wrapper';
 
-export default class App extends PureComponent {
-  static propTypes = {
-    children: PropTypes.element.isRequired
-  };
+export default class Home extends PureComponent {
+  static propTypes = {};
 
   render() {
     return (
       <Wrapper>
-        {this.props.children}
+        <h1>Home</h1>
       </Wrapper>
     );
   }
