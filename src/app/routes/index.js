@@ -4,7 +4,8 @@ export default function routes() {
   return {
     component: AppContainer,
     childRoutes: [
-      require('./landing')
+      require('./landing'),
+      require('./notFound')
     ]
   };
 }
