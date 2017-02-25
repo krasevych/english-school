@@ -10,7 +10,8 @@ injectGlobal`
     width: 100%;
     
     color: #333;
-    font-size: 14px
+    font-size: 14px;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   }
   
   #root {

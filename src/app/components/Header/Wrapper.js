@@ -1,8 +1,10 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { grey100 } from 'app/styles/colors';
 
-export default styled.div`
+const Wrapper = styled.div`
 height: 50px;
 line-height: 50px;
 background: ${grey100};
 `;
+
+export default Wrapper;

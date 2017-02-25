@@ -13,6 +13,7 @@ export default class Landing extends PureComponent {
 
   render() {
     const { children } = this.props;
+
     return (
       <Wrapper>
         <Header />
