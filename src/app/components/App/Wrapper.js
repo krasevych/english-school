@@ -1,9 +1,5 @@
 import styled from 'styled-components';
 
-const Wrapper = styled.div`
-background: green;
-color: #fff;
-
+export default styled.div`
+height: 100%;
 `;
-
-export default Wrapper;

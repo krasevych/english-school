@@ -1,18 +1,14 @@
-import React, {
-  PropTypes,
-  PureComponent
-} from 'react';
+import React, { PureComponent } from 'react';
 import Container from 'app/components/Container';
 import Wrapper from './Wrapper';
 
-export default class Home extends PureComponent {
-  static propTypes = {};
-
+export default class Footer extends PureComponent {
   render() {
     return (
       <Wrapper>
         <Container>
-          <h1>Home</h1>
+          <span>Have questions? Contact with me for help on</span>
+          <a>Github</a>
         </Container>
       </Wrapper>
     );

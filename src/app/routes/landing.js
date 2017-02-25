@@ -4,7 +4,5 @@ import LandingContainer from 'app/modules/landing/containers/LandingContainer';
 export default {
   path: '/',
   component: LandingContainer,
-  indexRoute: {
-    component: Home
-  }
+  indexRoute: { component: Home }
 };

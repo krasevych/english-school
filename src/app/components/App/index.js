@@ -2,6 +2,7 @@ import React, {
   PropTypes,
   PureComponent
 } from 'react';
+import 'app/styles/global';
 import Wrapper from './Wrapper';
 
 export default class App extends PureComponent {
@@ -10,9 +11,11 @@ export default class App extends PureComponent {
   };
 
   render() {
+    const { children } = this.props;
+
     return (
       <Wrapper>
-        {this.props.children}
+        {children}
       </Wrapper>
     );
   }
