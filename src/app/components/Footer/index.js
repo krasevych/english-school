@@ -14,9 +14,7 @@ export default class Footer extends PureComponent {
             href={githubUrl}
             target="_blank"
             rel="noopener noreferrer"
-          >
-            Github
-          </a>
+          >Github</a>
         </Container>
       </Wrapper>
     );

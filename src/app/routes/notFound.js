@@ -4,7 +4,6 @@ export default {
   path: '*',
   component: LandingContainer,
   getIndexRoute(partialNextState, cb) {
-    console.log(1111, partialNextState);
     require.ensure([], (require) => {
       cb(null, { component: require('app/components/NotFound') });
     });
