@@ -31,6 +31,8 @@ export default function createSSR(assets) {
 
             res.send(`<!doctype html>\n${content}`);
           });
+        } else {
+          res.status(404).send('Not found');
         }
       });
   };
