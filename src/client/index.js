@@ -6,7 +6,7 @@ import { match, browserHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 
 import Root from './root';
-import routes from '../app/routes';
+import getRoutes from '../app/routes';
 import configureStore from '../app/redux/store';
 import { createSelectLocationState } from '../app/utils';
 
@@ -23,10 +23,7 @@ const renderApp = renderProps => render(
 );
 
 match(
-  {
-    history,
-    routes: routes()
-  },
+  { history, routes: getRoutes() },
   (error, redirectLocation, renderProps) => renderApp(renderProps)
 );
 

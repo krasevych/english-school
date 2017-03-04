@@ -8,17 +8,21 @@ import { ReduxAsyncConnect } from 'redux-connect';
 
 export default class Root extends Component {
   static propTypes = {
-    store: PropTypes.object.isRequired
+    store: PropTypes.object.isRequired,
+    history: PropTypes.object.isRequired,
+    routes: React.PropTypes.oneOfType([
+      PropTypes.array,
+      PropTypes.object,
+    ]).isRequired
   };
 
   render() {
-    const key = module.hot && new Date();
     const { store } = this.props;
 
     return (
       <Provider store={store}>
         <Router
-          key={key}
+          key={module.hot && new Date()}
           render={props => <ReduxAsyncConnect {...props} />}
           {...this.props}
         />

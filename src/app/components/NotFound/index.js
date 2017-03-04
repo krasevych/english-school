@@ -7,7 +7,7 @@ export default class NotFound extends PureComponent {
     return (
       <Container>
         <Wrapper>
-          <span>Not Found111</span>
+          <span>Not Found</span>
         </Wrapper>
       </Container>
     );
