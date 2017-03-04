@@ -3,12 +3,8 @@ import React, {
   PropTypes
 } from 'react';
 import { Provider } from 'react-redux';
+import { Router } from 'react-router';
 import { ReduxAsyncConnect } from 'redux-connect';
-import { syncHistoryWithStore } from 'react-router-redux';
-import { Router, browserHistory } from 'react-router';
-
-import routes from '../app/routes';
-import { createSelectLocationState } from '../app/utils';
 
 export default class Root extends Component {
   static propTypes = {
@@ -16,17 +12,15 @@ export default class Root extends Component {
   };
 
   render() {
+    const key = module.hot && new Date();
     const { store } = this.props;
-    const history = syncHistoryWithStore(browserHistory, store, {
-      selectLocationState: createSelectLocationState('routing')
-    });
 
     return (
       <Provider store={store}>
         <Router
+          key={key}
           render={props => <ReduxAsyncConnect {...props} />}
-          history={history}
-          routes={routes(store)}
+          {...this.props}
         />
       </Provider>
     );

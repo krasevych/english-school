@@ -10,7 +10,7 @@
     "dev:server:delay": "run-s delay dev:server:start",
     "dev:server:start": "nodemon ./src/server/start.babel.js --watch ./static/server",
     "dev:client:build": "babel-node ./webpack/webpack-dev-server.js",
-    "delay": "node ./node_modules/npm-delay 10000",
+    "delay": "node ./node_modules/npm-delay 20000",
     "prod:start": "npm-run-all prod:client:build prod:server:build prod:server:start",
     "prod:client:build": "webpack --config ./webpack/webpack.config.client.production.babel.js --colors --display-error-details",
     "prod:server:build": "webpack --config ./webpack/webpack.config.server.production.babel.js --colors --display-error-details",
